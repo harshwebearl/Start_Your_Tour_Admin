@@ -1,0 +1,45 @@
+          .demo2 {
+              height: 130%;
+              width: 40%;
+              margin: auto;
+              padding: 2rem;
+              border-radius: 5%;
+              background-color: #FFFFFF;
+              /* background-color: darkMode ? "rgb(26 46 79)" : "#FFFFFF", */
+          }
+
+          @media (max-width:900px) {
+              .demo2 {
+                  width: 100%;
+              }
+          }
+
+
+          .itinerary-card {
+              margin: 16px;
+          }
+
+          .itinerary-photo {
+              width: 100%;
+              height: auto;
+          }
+
+          .add-button {
+              margin-top: 16px;
+          }
+
+          .modal-content-membershipplan {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              background-color: white !important;
+              padding: 32px;
+              box-shadow: 24;
+              outline: none;
+              width: 50% !important;
+          }
+
+          .submit-button {
+              margin-top: 16px;
+          }

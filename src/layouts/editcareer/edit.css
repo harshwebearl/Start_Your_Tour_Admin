@@ -1,0 +1,89 @@
+.add_input {
+  position: relative;
+}
+
+.add_input textarea {
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}
+
+.add_input_text input {
+  border: none;
+  background-color: transparent;
+}
+
+.add_input_text input:focus-visible {
+  border: none;
+  background-color: transparent;
+  outline: none;
+}
+
+.add_input_text button {
+  background-color: #0152a8;
+  color: white;
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  padding: 4px 12px;
+}
+
+.remove_text {
+  border: 1px solid grey;
+  border-radius: 10px;
+  min-height: 200px;
+  padding: 10px;
+  position: relative;
+}
+
+.add_text {
+  position: absolute;
+  bottom: 0px;
+  left: 0;
+  width: 100%;
+  display: flex;
+}
+
+.add_text input {
+  border: none;
+  width: 100%;
+  margin-left: 15px;
+}
+
+.add_text input::placeholder {
+    color: #999; /* Placeholder text color */
+    font-style: italic; /* Placeholder text style */
+    font-size: 14px;
+}
+
+.add_text input:focus-visible {
+  border: none;
+  outline: none;
+  padding: 0px 5px;
+}
+
+.add_text button {
+  background-color: #0152a8;
+  color: white;
+  border-radius: 0px 5px 5px 0px;
+  border: none;
+  padding: 0px 15px;
+  font-size: 14px;
+}
+
+.remove_btn {
+  color: white;
+  background-color: red;
+  border-radius: 5px;
+  border: none;
+  font-size: 10px;
+  padding: 0px 4px;
+}
+
+.tag_list {
+  padding-left: 10px !important;
+}
+
+.tag_list li {
+  font-size: 14px;
+  color: #495057;
+}
+

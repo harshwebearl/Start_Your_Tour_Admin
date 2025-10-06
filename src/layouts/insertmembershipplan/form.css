@@ -1,0 +1,92 @@
+.green_border{
+    border: 1px solid #09646D;
+    border-radius: 10px;
+}
+
+.overview_box input , .overview_box select{
+    border-radius: 5px;
+    border: 1px solid darkgray;
+    outline: none;
+    padding: 5px;
+}
+
+.overview_box select{
+    padding: 9px;
+}
+
+.overview_box_button button{
+    background-color: lightgray;
+    border: apx solid grey !important;
+    
+}
+
+.overview_box_button button:hover{
+    background-color: #09646D;
+    box-shadow: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.demo2{
+    width: 50% !important;
+}
+
+.input_box{
+    position: relative;
+    margin-top: 10px;
+}
+
+.input_box input{
+    padding: 10px;
+    border: 1px solid lightgray;
+    outline: none;
+    font-size: 16px;
+    border-radius: 10px;
+    margin-top: 5px;
+}
+
+.input_box span{
+    position: absolute;
+    left: 0;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 16px;
+    color: lightgray(57, 57, 46);
+    text-transform: uppercase;
+    transition: all 0.2s;
+}
+
+.input_box input:valid ~ span , 
+.input_box input:focus ~ span{
+    transform: translateX(8px) translateY(-3px);
+    font-size: 8px;
+    padding: 0px 10px;
+    background-color: white;
+}
+
+.input_box p , .input_box label:first-child{
+    color: black;
+    font-weight: 500;
+}
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,96 @@
+
+.booked-details {
+    display: flex;
+    justify-content: space-between;
+    border-bottom:1px solid black;
+    padding-bottom: 20px;
+    margin-bottom: 10px;
+}
+
+.booked-hotel-details-container {
+    border-right: 1px solid black;
+    width: 100%;
+}
+
+.booked-details-title {
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: underline;
+    text-align: center;
+    /* color: #007BFF; */
+    margin-bottom:20px;
+}
+
+.booked-details-name{
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.booked-details-address{
+    font-size:13px;
+}
+
+.cust-details-headings{
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin:0px 10px;
+}
+
+.booked-user-details-container {
+    border-right: 1px solid black;
+    width: 100%;
+    padding-left: 20px;
+}
+
+.booked-status-container {
+    /* border:1px solid black; */
+    padding-left: 20px;
+    width: 100%;
+}
+
+.booked-status {
+    background-color: #007BFF;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.update-status-title {
+    font-size: 14px;
+    /* color: #007BFF; */
+}
+
+.update-status-select {
+    border-color: #007BFF;
+    border: 1px solid;
+    text-align: center;
+    font-size: 14px;
+    color:#007BFF;
+    margin-right:10px;
+
+}
+
+.update-status-button {
+    font-size: 12px;
+    border: 1px solid #007BFF;
+    background-color: #007BFF;
+    border-radius: 5px;
+    padding: 3px 10px;
+    color: white;
+}
+
+.update-status-button:hover {
+    background-color: #074f55;
+}
+
+
+.booked-room-details{
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: underline;
+    /* color: #007BFF; */
+    margin-bottom:20px;
+}
