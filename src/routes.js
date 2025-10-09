@@ -60,6 +60,8 @@ import EditMembershipPlan from "layouts/editmembershipplan"
 import ManageCategory from "layouts/managecategory"
 import ManagePackages from "layouts/managepackages"
 import Manage_destination from "layouts/managedestination/Manage_destination"
+import Selected_destination from "layouts/selecteddestination/Selected_destination"
+import Createselecteddestination from "layouts/selecteddestination/Createselecteddestination"
 import BIDDisplay from "layouts/biddisplay"
 import BookPackageDisplay from "layouts/bookpackagedisplay"
 import SignIn from "layouts/authentication/sign-in"
@@ -271,6 +273,22 @@ const routes = [
     icon: <Icon fontSize='small'>category</Icon>,
     route: "/manage-destination",
     component: <Manage_destination />,
+  },
+  {
+    type: "collapse",
+    name: "Selected Destination",
+    key: "Selected-destination",
+    icon: <Icon fontSize='small'>category</Icon>,
+    route: "/Selected-destination",
+    component: <Selected_destination />,
+  },
+  {
+    type: "routes",
+    name: "Create Selected Destination",
+    key: "create-selected-destination",
+    icon: <Icon fontSize='small'>add</Icon>,
+    route: "/create-selected-destination",
+    component: <Createselecteddestination />,
   },
   {
     type: "collapse",
