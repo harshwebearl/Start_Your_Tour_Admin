@@ -100,7 +100,8 @@ import Addhighlight from "layouts/highlights/Addhighlight"
 import Addaminities from "layouts/aminities/Addaminities"
 import Editproperties from "layouts/properties/Editproperties"
 import Addproperties from "layouts/properties/Addproperties"
-import Blog from "layouts/Blog/Blog"
+import Blog from "layouts/blog1/BlogPage"
+import Blogger from "layouts/blog1/BlogPage" // <-- ADDED: missing import for Blogger
 import Bloggerfullinfo from "layouts/Blog/Bloggerfullinfo"
 import Editblogger from "layouts/Blog/Editblogger"
 import Subscription from "layouts/Subscription/Subscription"
@@ -232,6 +233,14 @@ const routes = [
     key: "blogger",
     icon: <Icon fontSize='small'>backup_table</Icon>,
     route: "/blogger",
+    component: <Blog />,
+  },
+  {
+    type: "collapse",
+    name: "Blog",
+    key: "blog",
+    icon: <Icon fontSize='small'>backup_table</Icon>,
+    route: "/blog",
     component: <Blog />,
   },
   {
@@ -673,6 +682,14 @@ const routes = [
     icon: <Icon fontSize='small'>add_box</Icon>,
     route: "/custom-requirment-compare/:id",
     component: <Customvendor />,
+  },
+  {
+    type: "routes",
+    name: "Blogger",
+    key: "Blogger",
+    icon: <Icon fontSize='small'>add_box</Icon>,
+    route: "/Blogger",
+    component: <Blogger/>,
   },
   {
     type: "routes",
