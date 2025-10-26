@@ -259,7 +259,7 @@ export default function Selected_destination() {
                         label="Category"
                         onChange={(e) => setSelectedCategory(e.target.value)}
                         sx={{
-                          height: '44px',
+                          height: '56px',
                           fontSize: '14px',
                           '& .MuiSelect-select': { display: 'flex', alignItems: 'center', padding: '10px 14px' },
                         }}

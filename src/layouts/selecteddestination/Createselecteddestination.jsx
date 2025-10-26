@@ -143,10 +143,11 @@ export default function Createselecteddestination() {
         isVisible: true,
       };
 
-      console.debug('Posting selected-destination payload:', payload);
-      const token = localStorage.getItem('sytAdmin');
-      const url = `${BASE_URL}api/selected-destination/admin/packages/category/${encodeURIComponent(selectedCategory)}`;
-      const res = await axios.post(url, payload, { headers: { Authorization: token, 'Content-Type': 'application/json' } });
+  console.debug('Posting selected-destination payload:', payload);
+  const token = localStorage.getItem('sytAdmin');
+  const url = `${BASE_URL}api/selected-destination/admin/select-destination`;
+  console.debug('POST URL:', url);
+  const res = await axios.post(url, payload, { headers: { Authorization: token, 'Content-Type': 'application/json' } });
       // handle success loosely — backend may return created object or message
       console.debug('Save response:', res?.data ?? res);
       alert('Selected destinations saved successfully');
@@ -162,31 +163,31 @@ export default function Createselecteddestination() {
     <DashboardLayout>
       <DashboardNavbar />
       <MDBox pt={6} pb={3}>
-        <Card sx={{ p: 3 }}>
+        <Card sx={{ p: 3 }} >
           <MDTypography variant="h6">Create Selected Destination</MDTypography>
 
-          <MDBox mt={2}>
-            <Grid container spacing={2} alignItems="center">
-              <Grid item xs={12} md={6}>
-                <FormControl fullWidth>
-                  <InputLabel id="category-label">Category</InputLabel>
-                  <Select
-                    labelId="category-label"
-                    value={selectedCategory}
-                    label="Category"
-                    onChange={(e) => setSelectedCategory(e.target.value)}
-                  >
-                    <MenuItem value="">-- Select --</MenuItem>
-                    {categories.map((c) => (
-                      <MenuItem key={c.id} value={c.id}>{c.name}</MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-            </Grid>
+          <MDBox >
+            <div className="flex flex-col md:flex-row md:items-center gap-4">
+  <div className="w-full md:w-1/2">
+    <label htmlFor="category" className="block text-sm font-medium text-gray-700 mb-1">
+      Category
+    </label>
+    <select
+      id="category"
+      value={selectedCategory}
+      onChange={(e) => setSelectedCategory(e.target.value)}
+      className="block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
+      <option value="" hidden selected>-- Select --</option>
+      {categories.map((c) => (
+        <option key={c.id} value={c.id}>{c.name}</option>
+      ))}
+    </select>
+  </div>
+</div>
 
             <MDBox mt={3}>
-              <MDTypography variant="subtitle2">Active Destinations</MDTypography>
+              {/* <MDTypography variant="subtitle2">Active Destinations</MDTypography> */}
               {isLoading ? (
                 <MDBox display="flex" justifyContent="center" mt={2}>
                   <Audio height="40" width="40" radius="9" color="green" ariaLabel="loading" />
@@ -218,26 +219,11 @@ export default function Createselecteddestination() {
             <MDBox mt={3}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <MDTypography variant="subtitle2">All Destinations</MDTypography>
-                <Button
-                  variant="contained"
-                  size="small"
-                  onClick={() => {
-                    // select all visible active destinations
-                    const visible = items.filter((it) => getPackageCount(it) > 0);
-                    const updated = { ...checkedDestinations };
-                    visible.forEach((it) => {
-                      const key = it._id ?? it.id ?? it.destination_name ?? it.name;
-                      updated[key] = true;
-                    });
-                    setCheckedDestinations(updated);
-                  }}
-                >
-                  Select
-                </Button>
+               
               </div>
 
               {allDestinations.length === 0 ? (
-                <MDTypography variant="body2" sx={{ mt: 1 }}>No destinations loaded.</MDTypography>
+                <MDTypography variant="body2" sx={{ mt: 1 }}>No Destinations Loaded, Please Select Destination Category  .</MDTypography>
               ) : (
                 // Responsive grid: 1 column on xs, 2 on sm, 3 on md, 5 on lg, 7 on xl
                 <MDBox
@@ -290,10 +276,11 @@ export default function Createselecteddestination() {
                 variant="contained"
                 color="primary"
                 onClick={handleSave}
+                className='text-white  '
               >
                 Save
               </Button>
-              <Button variant="outlined" onClick={() => navigate(-1)}>Cancel</Button>
+              <Button variant="outlined" onClick={() => navigate(-1)} className='text-blue-500' sx={{ color: '#3007ffff' }}>Cancel</Button>
             </div>
           </MDBox>
         </Card>

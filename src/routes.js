@@ -101,13 +101,16 @@ import Addaminities from "layouts/aminities/Addaminities"
 import Editproperties from "layouts/properties/Editproperties"
 import Addproperties from "layouts/properties/Addproperties"
 import Blog from "layouts/blog1/BlogPage"
-import Blogger from "layouts/blog1/BlogPage" // <-- ADDED: missing import for Blogger
-import Bloggerfullinfo from "layouts/Blog/Bloggerfullinfo"
-import Editblogger from "layouts/Blog/Editblogger"
+import Blogger from "layouts/blog1/BlogPage" 
+import Bloggerfullinfo from "layouts/blog1/Bloggerfullinfo"
+import Editpage from "layouts/blog1/editpage";
+import AddBlog from "layouts/blog1/AddBlog";
+// import Bloggerfullinfo from "layouts/Blog/Bloggerfullinfo"
+// import Editblogger from "layouts/Blog/Editblogger"
 import Subscription from "layouts/Subscription/Subscription"
-import Addblogger from "layouts/Blog/Addblogger"
-import Addblog from "layouts/Blog/Addblog"
-import Editblog from "layouts/Blog/EditBlog"
+// import Addblogger from "layouts/Blog/Addblogger"
+// import Addblog from "layouts/Blog/Addblog"
+// import Editblog from "layouts/Blog/EditBlog"
 import Allfaqs from "layouts/faqs/Allfaqs"
 import Addfaqs from "layouts/faqs/Addfaqs"
 import Editfaqs from "layouts/faqs/Editfaqs"
@@ -227,14 +230,14 @@ const routes = [
     route: "/itinerary-hotels",
     component: <ItineraryHotel />,
   },
-  {
-    type: "collapse",
-    name: "Blogger",
-    key: "blogger",
-    icon: <Icon fontSize='small'>backup_table</Icon>,
-    route: "/blogger",
-    component: <Blog />,
-  },
+  // {
+  //   type: "collapse",
+  //   name: "Blogger",
+  //   key: "blogger",
+  //   icon: <Icon fontSize='small'>backup_table</Icon>,
+  //   route: "/blogger",
+  //   component: <Blog />,
+  // },
   {
     type: "collapse",
     name: "Blog",
@@ -695,42 +698,58 @@ const routes = [
     type: "routes",
     name: "Bloggerfullinfo",
     key: "Bloggerfullinfo",
-    icon: <Icon fontSize='small'>add_box</Icon>,
-    route: "/Bloggerfullinfo/:_id",
+    icon: <Icon fontSize='small'>article</Icon>,
+    route: "/blogger/:_id",
     component: <Bloggerfullinfo />,
   },
   {
     type: "routes",
-    name: "Editblogger",
-    key: "Editblogger",
-    icon: <Icon fontSize='small'>add_box</Icon>,
-    route: "/Editblogger/:_id",
-    component: <Editblogger />,
+    name: "Edit Blog",
+    key: "edit-blog",
+    icon: <Icon fontSize='small'>edit</Icon>,
+    route: "/blogger/edit/:_id",
+    component: <Editpage />,
   },
   {
     type: "routes",
-    name: "EditBlog",
-    key: "EditBlog",
-    icon: <Icon fontSize='small'>add_box</Icon>,
-    route: "/EditBlog/:_id/:id",
-    component: <Editblog />,
+    name: "Add Blog",
+    key: "add-blog",
+    icon: <Icon fontSize='small'>add</Icon>,
+    route: "/blogger/add",
+    component: <AddBlog />,
   },
-  {
-    type: "routes",
-    name: "Addblogger",
-    key: "Addblogger",
-    icon: <Icon fontSize='small'>add_box</Icon>,
-    route: "/Addblogger",
-    component: <Addblogger />,
-  },
-  {
-    type: "routes",
-    name: "Addblog",
-    key: "Addblog",
-    icon: <Icon fontSize='small'>add_box</Icon>,
-    route: "/Addblog/:_id",
-    component: <Addblog />,
-  },
+  // {
+  //   type: "routes",
+  //   name: "Bloggerfullinfo",
+  //   key: "Bloggerfullinfo",
+  //   icon: <Icon fontSize='small'>add_box</Icon>,
+  //   route: "/Bloggerfullinfo/:_id",
+  //   component: <Bloggerfullinfo />,
+  // },
+  // {
+  //   type: "routes",
+  //   name: "Editblogger",
+  //   key: "Editblogger",
+  //   icon: <Icon fontSize='small'>add_box</Icon>,
+  //   route: "/Editblogger/:_id",
+  //   component: <Editblogger />,
+  // },
+  // {
+  //   type: "routes",
+  //   name: "EditBlog",
+  //   key: "EditBlog",
+  //   icon: <Icon fontSize='small'>add_box</Icon>,
+  //   route: "/EditBlog/:_id/:id",
+  //   component: <Editblog />,
+  // },
+  // {
+  //   type: "routes",
+  //   name: "Addblogger",
+  //   key: "Addblogger",
+  //   icon: <Icon fontSize='small'>add_box</Icon>,
+  //   route: "/Addblogger",
+  //   component: <Addblogger />,
+  // },
   {
     type: "routes",
     name: "BookedPackage",
