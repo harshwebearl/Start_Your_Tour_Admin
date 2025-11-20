@@ -103,6 +103,8 @@ function Header({ children, selectedTab, onTabChange }) {
       const data = await res.json();
       if (res.ok) {
         setStatus(pendingStatus);
+        // Refresh the page so updated status is reflected across the UI
+        window.location.reload();
       } else {
         // Optionally handle error (toast/log)
         console.error("Status update failed", data);

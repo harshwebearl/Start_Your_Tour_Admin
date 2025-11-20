@@ -125,14 +125,19 @@ function UserDetail() {
       }
 
       const data = await response.json();
+      // Refresh the vendor details so the page updates automatically
+      try {
+        await fetchUserData();
+      } catch (e) {
+        console.error("Error refreshing data after update:", e);
+      }
       setDialogOpen(false);
-      alert("status changed")
     } catch (error) {
       console.error('Error:', error);
       setDialogOpen(false);
     }
 
-    // Close the delete dialog
+    
 
   };
 
