@@ -214,7 +214,7 @@ function UserDetail() {
             )}
         </Header>
 
-        <Footer />
+        <Footer />MuiTypography-root
       </DashboardLayout>
     </GlobleInfo.Provider>
   )

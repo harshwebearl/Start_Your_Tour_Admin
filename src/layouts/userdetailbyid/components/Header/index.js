@@ -8,6 +8,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Icon from "@mui/material/Icon";
 import Pagination from "@mui/material/Pagination"; // Import Pagination
+import { FormControl, InputLabel, Select, MenuItem, Dialog, DialogTitle, DialogContent, DialogActions, Button } from "@mui/material";
 import MDBox from "components/MDBox";
 import MDTypography from "components/MDTypography";
 import MDAvatar from "components/MDAvatar";
@@ -16,6 +17,7 @@ import burceMars from "assets/images/bruce-mars.jpg";
 import backgroundImage from "assets/images/bg-profile.jpeg";
 import { GlobleInfo } from "layouts/userdetailbyid";
 import { GlobleInfo2 } from "layouts/customrequirmentlist/CustReqDetails";
+import { BASE_URL } from "BASE_URL";
 
 function Header({ children, selectedTab, onTabChange }) {
   const [tabsOrientation, setTabsOrientation] = useState("horizontal");
@@ -64,6 +66,59 @@ function Header({ children, selectedTab, onTabChange }) {
 
   const handlePageChange = (event, value) => {
     setPage(value);
+  };
+
+  // Status dropdown + confirmation modal
+  const userId = user?.[0]?._id;
+  const initialStatus =
+    user?.[0]?.status || user?.[0]?.customer_details?.[0]?.status || "active";
+  const [status, setStatus] = useState(initialStatus);
+  const [pendingStatus, setPendingStatus] = useState("");
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  useEffect(() => {
+    const s = user?.[0]?.status || user?.[0]?.customer_details?.[0]?.status || "active";
+    setStatus(s);
+  }, [user]);
+
+  const handleStatusChange = (event) => {
+    const value = event.target.value;
+    setPendingStatus(value);
+    setOpenConfirm(true);
+  };
+
+  const handleConfirm = async () => {
+    setIsSubmitting(true);
+    try {
+      const token = localStorage.getItem("sytAdmin");
+      const res = await fetch(`${BASE_URL}admin/customer/status?_id=${userId}`, {
+        method: "PUT",
+        headers: {
+          Authorization: token,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ status: pendingStatus }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        setStatus(pendingStatus);
+      } else {
+        // Optionally handle error (toast/log)
+        console.error("Status update failed", data);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+      setOpenConfirm(false);
+      setPendingStatus("");
+    }
+  };
+
+  const handleCancel = () => {
+    setPendingStatus("");
+    setOpenConfirm(false);
   };
 
   return (
@@ -123,6 +178,58 @@ function Header({ children, selectedTab, onTabChange }) {
               </MDTypography>
             </MDBox>
           </Grid>
+          <Grid item>
+            <FormControl
+              variant="outlined"
+              size="small"
+              sx={{
+                minWidth: 160,
+                '& .MuiOutlinedInput-root': {
+                  borderRadius: '10px',
+                  backgroundColor: '#fff',
+                  transition: 'all 0.25s ease-in-out',
+
+                  '& fieldset': {
+                    borderColor: '#d1d5db',
+                  },
+                  '&:hover fieldset': {
+                    borderColor: '#4f46e5', // hover color
+                  },
+                  '&.Mui-focused fieldset': {
+                    borderColor: '#4338ca', // focus color
+                    boxShadow: '0 0 0 3px rgba(79,70,229,0.15)',
+                  },
+                },
+
+                '& .MuiInputLabel-root': {
+                  color: '#6b7280',
+                  fontSize: '14px',
+                },
+                '& .MuiInputLabel-root.Mui-focused': {
+                  color: '#4338ca',
+                },
+              }}
+            >
+              <InputLabel id="status-label">Status</InputLabel>
+
+              <Select
+                labelId="status-label"
+                id="status-select"
+                value={status}
+                label="Status"
+                onChange={handleStatusChange}
+                sx={{
+                  color: "#111827",
+                  fontSize: "14px",
+                  height: "44px",
+                }}
+              >
+                <MenuItem value="active">Active</MenuItem>
+                <MenuItem value="inactive">Inactive</MenuItem>
+              </Select>
+            </FormControl>
+          </Grid>
+
           <Grid item xs={12} md={6} lg={6} sx={{ ml: "auto" }}>
             <AppBar position="static">
               <Tabs orientation={tabsOrientation} value={tabValue} onChange={handleSetTabValue}>
@@ -184,6 +291,50 @@ function Header({ children, selectedTab, onTabChange }) {
             />
           </MDBox>
         )}
+        <Dialog 
+  open={openConfirm} 
+  onClose={handleCancel}
+  sx={{
+    '& .MuiDialog-paper': {
+      backgroundColor: 'white', // dark background (optional)
+      color: 'white',             // white text inside dialog
+    },
+    '& .MuiDialogTitle-root': {
+      color: 'white',
+    },
+    '& .MuiDialogContent-root': {
+      color: 'white',
+    },
+    '& .MuiButton-root': {
+      color: 'white', // white text for buttons
+    }
+  }}
+>
+  <DialogTitle>Are you sure?</DialogTitle>
+
+  <DialogContent>
+    <MDTypography variant="body2" sx={{ color: "white" }}>
+      Do you want to change status to "{pendingStatus}"?
+    </MDTypography>
+  </DialogContent>
+
+  <DialogActions>
+    <Button onClick={handleCancel} disabled={isSubmitting}>
+      Cancel
+    </Button>
+
+    <Button
+      onClick={handleConfirm}
+      variant="contained"
+      disabled={isSubmitting}
+      sx={{ color: "#fff" }}
+    >
+      {isSubmitting ? "Saving..." : "Confirm"}
+    </Button>
+  </DialogActions>
+</Dialog>
+
+
         {children}
       </Card>
     </MDBox>
